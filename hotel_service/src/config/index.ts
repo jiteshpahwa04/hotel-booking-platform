@@ -4,6 +4,7 @@ type ServerConfigType = {
     PORT: number
     REDIS_HOST: string
     REDIS_PORT: number
+    ROOM_CRON: string
 }
 
 type DbConfigType = {
@@ -23,7 +24,8 @@ loadEnv();
 export const serverConfig : ServerConfigType = {
     PORT: Number(process.env.PORT) || 3001,
     REDIS_HOST: process.env.REDIS_HOST || 'localhost',
-    REDIS_PORT: Number(process.env.REDIS_PORT) || 6379
+    REDIS_PORT: Number(process.env.REDIS_PORT) || 6379,
+    ROOM_CRON: process.env.ROOM_CRON || '0 2 * * *',
 };
 
 export const dbConfig : DbConfigType = {

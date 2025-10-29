@@ -8,6 +8,7 @@ import logger from "./config/logger.config";
 import { attachCorrelationMiddleWare } from "./middlewares/correlation.middleware";
 import sequelize from "./db/models/sequelize";
 import { setupRoomGenerationWorker } from "./processors/roomGeneration.processor";
+import { startScheduler } from "./scheduler/room.scheduler";
 
 const app: Express = express();
 
@@ -29,4 +30,6 @@ app.listen(PORT, async ()=>{
     logger.info("Database connected successfully!");
     setupRoomGenerationWorker();
     logger.info("Room generation worker setup completed!");
+    startScheduler();
+    logger.info('Room availability extension scheduler initialized');
 });
